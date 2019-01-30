@@ -25,4 +25,4 @@ yarn-error.log*
 #python
 /pytest/__pycache__
 /pytest/.idea
-/pytest/venv
+/pytest/venv/*
