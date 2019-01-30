@@ -9,11 +9,18 @@ def open_url(browser,url):
     assert browser.title == "React App"
 
 def test_add_todo(browser, open_url):
+    todoText = "Add to do item 1 by PYTEST"
+    newItemAdded = False
     originItemsCount = len(browser.find_elements(By.XPATH, '//*[@class="todo"]'))
-    browser.find_element_by_name('addToDo').send_keys('Add a to do item 1')
+    browser.find_element_by_name('addToDo').send_keys(todoText)
     browser.find_element_by_name('addToDo').send_keys(Keys.ENTER)
-    newItemCount = len(browser.find_elements(By.XPATH, '//*[@class="todo"]'))
-    assert newItemCount == originItemsCount+1
+    updatedList = browser.find_elements(By.XPATH, '//*[@class="todo"]')
+    assert len(updatedList) == originItemsCount+1
+    for item in updatedList:
+        if item.text.find(todoText):
+            newItemAdded = True
+
+    assert newItemAdded == True
 
 def test_complete_todo(browser, open_url):
     browser.find_element_by_name('btnComplete').click()
