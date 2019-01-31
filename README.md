@@ -1,4 +1,4 @@
-Headless Browser Automation & Testing with Selenium ChromeDriver and Pytest.
+React app Headless Browser Automation & Testing with Selenium ChromeDriver and Pytest.
 
 ## Quick Start:
 
