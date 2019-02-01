@@ -1,65 +1,9 @@
-defaults: &defaults
-  docker:
-    - image: circleci/python:jessie-node-browsers
-
 version: 2
 jobs:
-  pre-build:
+  build:
+    machine: true
     working_directory: ~/todolist
-    <<: *defaults
-    steps:
-      - checkout:
-          path: ~/todolist
-      - attach_workspace:
-          at: ~/todolist
-
-      - restore_cache:
-          key: node-v2-{{ checksum "package.json" }}-{{ arch }}
-
-      - run: npm install
-
-      - save_cache:
-          key: node-v2-{{ checksum "package.json" }}-{{ arch }}
-          paths:
-            - node_modules
-
-      - persist_to_workspace:
-          root: ~/todolist
-          paths:
-            - node_modules
-  e2etest:
-    working_directory: ~/todolist
-    <<: *defaults
     steps:
       - checkout
-
-      - attach_workspace:
-          at: ~/todolist
-
-      - restore_cache:
-          key: todolist-{{ .Branch }}-{{ checksum "requirements.txt" }}
-
-      - run: npm start
-
-      - command: |
-          pip install -r requirements.txt
-          pytest --url http://localhost:3000 -s
-          working_directory: ~/todolist/pytest
-
-      - save_cache:
-          key: todolist-{{ .Branch }}-{{ checksum "requirements.txt" }}
-          paths:
-            - "~/.cache/pip"
-
-workflows:
-  version: 2
-  front-backend:
-    jobs:
-      - pre-build:
-          filters:
-            branches:
-              only:
-                - master
-      - lint:
-          requires:
-            - pre-build
+      - run: docker build --no-cache -t e2e-test .
+      - run: docker run -p 80:80 --rm e2e-test

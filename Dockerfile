@@ -3,7 +3,7 @@ USER root
 
 ENV BUNDLE_SILENCE_ROOT_WARNING=1
 
-RUN apt-get update && apt-get -y install curl gnupg xvfb unzip
+RUN apt-get update && apt-get -y install curl gnupg unzip wget
 
 # Install Nginx.
 RUN set -ex && \
@@ -13,13 +13,16 @@ RUN set -ex && \
   rm -rf /var/lib/apt/lists/* && \
   chown -R www-data:www-data /var/lib/nginx
 
-# Install Chrome
-RUN curl -sL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /chrome.deb
-RUN dpkg -i /chrome.deb; apt-get -fy install
-RUN rm /chrome.deb
+
+# Set the Chrome repo.
+RUN wget -qO - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+
+# Install Chrome.
+RUN apt-get update && apt-get -y install google-chrome-stable
 
 # Install nodejs
-RUN curl -sL https://deb.nodesource.com/setup_11.x  | bash -
+RUN wget -qO - https://deb.nodesource.com/setup_11.x | bash -
 RUN apt-get -y install nodejs
 
 WORKDIR /src
@@ -41,7 +44,7 @@ RUN pip -V
 
 # Chrome Driver
 RUN mkdir -p /opt/selenium \
-    && curl http://chromedriver.storage.googleapis.com/2.45/chromedriver_linux64.zip -o /opt/selenium/chromedriver_linux64.zip \
+    && wget -q http://chromedriver.storage.googleapis.com/2.45/chromedriver_linux64.zip -O /opt/selenium/chromedriver_linux64.zip \
     && cd /opt/selenium; unzip /opt/selenium/chromedriver_linux64.zip; rm -rf chromedriver_linux64.zip; ln -fs /opt/selenium/chromedriver /usr/local/bin/chromedriver;
 
 # Install python dependencies

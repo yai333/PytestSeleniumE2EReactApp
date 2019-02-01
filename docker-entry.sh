@@ -4,4 +4,6 @@ set -ex
 
 cd pytest
 
-pytest -s --url http://localhost:5000
+nginx
+
+pytest -s --url http://localhost
