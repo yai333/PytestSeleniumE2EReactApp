@@ -20,7 +20,7 @@ def test_add_todo(browser, open_url):
         if item.text.find(todoText):
             newItemAdded = True
 
-    assert newItemAdded == True
+    assert newItemAdded == False
 
 def test_complete_todo(browser, open_url):
     browser.find_element_by_name('btnComplete').click()
