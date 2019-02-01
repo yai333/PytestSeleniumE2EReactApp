@@ -7,7 +7,7 @@
   height: 100vh;
 }
 
-.todo-list {
+.todo-sList {
   background: #eee;
   border-radius: 4px;
   padding: 5px;
@@ -36,7 +36,7 @@
 }
 
 .delete-button {
-  margin-left: 5px;
+  margin-sLeft: 5px;
   height: 20px;
   width: 20px;
   border-radius: 10px;

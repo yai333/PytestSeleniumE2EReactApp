@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 def pytest_addoption(parser):
-    parser.addoption("--url", action="store", default="http://localhost:3000", help="url")
+    parser.addoption("--url", action="store", default="http://localhost", help="url")
 
 
 @pytest.fixture(scope="module", autouse=True)
@@ -14,7 +14,7 @@ def browser():
     options.add_argument('--single-process')
     options.add_argument('--disable-dev-shm-usage')
 
-    browser = webdriver.Chrome('driver/chromedriver')
+    browser = webdriver.Chrome(chrome_options=options)
     return browser
 
 @pytest.fixture(scope="module")

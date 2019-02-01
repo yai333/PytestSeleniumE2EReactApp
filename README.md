@@ -1,4 +1,4 @@
-Headless Browser Automation & Testing with Selenium ChromeDriver and Pytest.
+React app Headless Browser Automation & Testing with Selenium ChromeDriver and Pytest.
 
 ## Quick Start:
 
@@ -25,6 +25,14 @@ cd pytest
 pytest --url http://localhost:3000 -s
 ```
 
+### Docker
+
+```
+docker build --no-cache -t e2e-test .
+
+docker run -p 80:80 --rm e2e-test
+```
+
 ### Circleci
 
-Config is in `.circleci/config.yml`
+CI Config is in `.circleci/config.yml`
