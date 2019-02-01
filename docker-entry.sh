@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# run pytest ($@ to derive parameters from commandline)
-pwd
+set -ex
 
 cd pytest
 

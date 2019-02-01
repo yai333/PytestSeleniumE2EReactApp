@@ -14,7 +14,7 @@ def browser():
     options.add_argument('--single-process')
     options.add_argument('--disable-dev-shm-usage')
 
-    browser = webdriver.Chrome('driver/chromedriver')
+    browser = webdriver.Chrome('driver/chromedriver', chrome_options=options)
     return browser
 
 @pytest.fixture(scope="module")

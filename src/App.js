@@ -75,7 +75,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <div className="todo-list">
+      <div className="todo-sList">
         {todos.map((todo, index) => (
           <Todo
             key={index}
