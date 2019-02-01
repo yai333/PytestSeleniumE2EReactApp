@@ -7,3 +7,13 @@ jobs:
       - checkout
       - run: docker build --no-cache -t e2e-test .
       - run: docker run -p 80:80 --rm e2e-test
+
+workflows:
+  version: 2
+  front-backend:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
