@@ -1,4 +1,5 @@
 React app Headless Browser Automation & Testing with Selenium ChromeDriver and Pytest.
+https://medium.com/@yia333/in-order-to-create-automated-testing-in-a-continuous-integration-environment-you-will-need-to-35d9952ccca4
 
 ## Quick Start:
 
