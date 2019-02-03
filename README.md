@@ -11,7 +11,7 @@ https://medium.com/@yia333/in-order-to-create-automated-testing-in-a-continuous-
 
 `npm install`
 
-### Install SeleniumBase:
+### Install Python dependencies:
 
 ```
 cd pytest
@@ -26,7 +26,7 @@ cd pytest
 pytest --url http://localhost:3000 -s
 ```
 
-### Docker
+### Run with Docker
 
 ```
 docker build --no-cache -t e2e-test .
@@ -34,6 +34,6 @@ docker build --no-cache -t e2e-test .
 docker run -p 80:80 --rm e2e-test
 ```
 
-### Circleci
+### Run with CircleCI
 
 CI Config is in `.circleci/config.yml`
