@@ -3,9 +3,9 @@ https://medium.com/@yia333/in-order-to-create-automated-testing-in-a-continuous-
 
 ## Quick Start:
 
-### Clone SeleniumBase from GitHub:
+### Clone project from GitHub:
 
-`git clone https://github.com/seleniumbase/SeleniumBase.git`
+`git clone https://github.com/yai333/PytestSeleniumE2EReactApp.git`
 
 ### Install npm dependencies:
 
